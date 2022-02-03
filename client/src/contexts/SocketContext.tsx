@@ -15,6 +15,7 @@ const SocketProvider = (props: ChildProps) => {
     </div>);
 };
 
+/* Types */
 interface ChildProps {
     children: any;
 }
