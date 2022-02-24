@@ -10,7 +10,7 @@ import { SettingsProvider } from './contexts/SettingsContext';
 import { HOME_SCREEN_PATH } from './utils/constants/paths';
 // Components
 import HomePage from './components/setup/HomePage';
-import Header from './components/Header';
+import Header from './components/menus/Header';
 
 const App = () => {
     return (<SocketProvider>
@@ -31,7 +31,7 @@ const App = () => {
 const PageWrapper = styled.div`
     display: inline-flex;
     min-height: 100vh;
-    min-width: 100vw;
+    width: 100%;
     flex-direction: column;
 `;
 

@@ -12,9 +12,11 @@ const settingsReducer = (draft: ISettings, action: { type: string, payload?: any
     switch (action.type) {
         case SET_DARK_MODE:
             draft.colourScheme = darkScheme;
+            draft.isDark = true;
             return draft;
         case SET_LIGHT_MODE:
             draft.colourScheme = lightScheme;
+            draft.isDark = false;
             return draft;
         default:
             return draft;
@@ -36,7 +38,7 @@ const lightScheme: IColourScheme = {
 
 const initialSettings: ISettings = {
     colourScheme: darkScheme,
-    isDark: true,
+    isDark: false,
 };
 
 const SettingsProvider = (props: ChildProps) => {
