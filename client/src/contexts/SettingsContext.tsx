@@ -3,8 +3,8 @@ import { createContext, useReducer } from 'react';
 import { produce } from 'immer';
 
 /* Project Imports */
-import { ISettings, IColourScheme } from '../types/settings';
-import { SET_DARK_MODE, SET_LIGHT_MODE } from '../utils/constants/settings';
+import { ISettings } from '../types/settings';
+import { SET_DARK_MODE, SET_LIGHT_MODE, darkScheme, lightScheme } from '../utils/constants/settings';
 
 const SettingsContext = createContext<any>(null);
 
@@ -25,19 +25,8 @@ const settingsReducer = (draft: ISettings, action: { type: string, payload?: any
 
 const curriedSettingsReducer = produce(settingsReducer);
 
-/* Constant States */
-const darkScheme: IColourScheme = {
-    backgroundColour: "black",
-    textColour: "white",
-};
-
-const lightScheme: IColourScheme = {
-    backgroundColour: "white",
-    textColour: "black",
-};
-
 const initialSettings: ISettings = {
-    colourScheme: darkScheme,
+    colourScheme: lightScheme,
     isDark: false,
 };
 

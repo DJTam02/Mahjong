@@ -7,7 +7,7 @@ import styled from 'styled-components';
 /* Project Imports */
 import { SettingsContext } from '../contexts/SettingsContext';
 import { ISettings } from '../types/settings';
-import { SET_DARK_MODE, SET_LIGHT_MODE } from '../utils/constants/settings';
+import { SET_DARK_MODE, SET_LIGHT_MODE, darkScheme, lightScheme } from '../utils/constants/settings';
 
 const DarkModeSwitch = () => {
     /* Contexts */
@@ -18,31 +18,37 @@ const DarkModeSwitch = () => {
         dispatchSettings({ type: settings.isDark ? SET_LIGHT_MODE : SET_DARK_MODE });
     };
 
-    return <SwitchContainer isDark={settings.isDark} onClick={toggleTheme}>
-        <SunIcon isDark={settings.isDark}>
-            <LightModeIcon sx={{ color: 'white' }} />
+    return <SwitchContainer 
+        backgroundColour={settings.colourScheme.backgroundColour} 
+        textColour={settings.colourScheme.textColour} 
+        onClick={toggleTheme}
+    >
+        <SunIcon>
+            <LightModeIcon sx={{ color: darkScheme.backgroundColour }} />
         </SunIcon>
-        <MoonIcon isDark={settings.isDark}>
-            <DarkModeIcon sx={{ color: 'black' }} />
+        <MoonIcon>
+            <DarkModeIcon sx={{ color: lightScheme.backgroundColour }} />
         </MoonIcon>
     </SwitchContainer>;
 };
 
 /* Styled Components */
-const SwitchContainer = styled.div<{ isDark: boolean }>`
-    border: 2px solid ${props => props.isDark ? "white" : "red"};
-    border-radius: 20px;
-    background-color: ${props => props.isDark ? "black" : "white"};
+const SwitchContainer = styled.div<{ backgroundColour: string, textColour: string }>`
+    border: 2px solid ${props => props.textColour};
+    border-radius: 100000000px;
+    background-color: ${props => props.backgroundColour};
     height: 24px;
     padding: 5px;
+    transition: 0.25s;
+    cursor: pointer;
 `;
 
-const SunIcon = styled.div<{ isDark: boolean }>`
+const SunIcon = styled.div`
     display: inline-block;
     height: 24px;
 `;
 
-const MoonIcon = styled.div<{ isDark: boolean }>`
+const MoonIcon = styled.div`
     display: inline-block;
     height: 24px;
 `;
