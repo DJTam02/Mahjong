@@ -15,7 +15,7 @@ const Header = () => {
         textColour={settings.colourScheme.textColour}
         darkMode={settings.isDark}
     >
-        <img src="" />
+        <img src="/icon.png" alt="Mahjong Tile" />
         <DarkModeSwitch />
     </HeaderWrapper>)
 };

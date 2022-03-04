@@ -7,6 +7,7 @@ import styled from 'styled-components';
 /* Project Imports */
 import { SettingsContext } from '../contexts/SettingsContext';
 import { ISettings } from '../types/settings';
+import { PillContainer } from '../utils/constants/commonStyles';
 import { SET_DARK_MODE, SET_LIGHT_MODE, darkScheme, lightScheme } from '../utils/constants/settings';
 
 const DarkModeSwitch = () => {
@@ -23,32 +24,23 @@ const DarkModeSwitch = () => {
         textColour={settings.colourScheme.textColour} 
         onClick={toggleTheme}
     >
-        <SunIcon>
+        <Icon>
             <LightModeIcon sx={{ color: darkScheme.backgroundColour }} />
-        </SunIcon>
-        <MoonIcon>
+        </Icon>
+        <Icon>
             <DarkModeIcon sx={{ color: lightScheme.backgroundColour }} />
-        </MoonIcon>
+        </Icon>
     </SwitchContainer>;
 };
 
 /* Styled Components */
-const SwitchContainer = styled.div<{ backgroundColour: string, textColour: string }>`
-    border: 2px solid ${props => props.textColour};
-    border-radius: 100000000px;
-    background-color: ${props => props.backgroundColour};
+const SwitchContainer = styled(PillContainer)`
     height: 24px;
     padding: 5px;
-    transition: 0.25s;
     cursor: pointer;
 `;
 
-const SunIcon = styled.div`
-    display: inline-block;
-    height: 24px;
-`;
-
-const MoonIcon = styled.div`
+const Icon = styled.div`
     display: inline-block;
     height: 24px;
 `;
