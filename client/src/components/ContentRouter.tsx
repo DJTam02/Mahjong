@@ -4,12 +4,17 @@ import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
 
 /* Project Imports */
-import { HOME_SCREEN, PLAY_ONLINE, SETTINGS } from '../utils/constants/paths';
+// Constants
+import { HOME_SCREEN, PLAY_ONLINE, SETTINGS, HOW_TO_PLAY, JOIN_LOBBY, HOST_GAME } from '../utils/constants/paths';
+import { TextSize } from '../utils/constants/commonStyles';
 import { SettingsContext } from '../contexts/SettingsContext';
 // Components
 import HomePage from './setup/HomePage';
 import PlayOnline from './setup/PlayOnline';
 import Settings from './setup/Settings';
+import HowToPlay from './setup/HowToPlay'
+import JoinLobby from './setup/JoinLobby';
+import HostGame from './setup/HostGame';
 
 const ContentRouter = () => {
     /* Contexts */
@@ -23,6 +28,9 @@ const ContentRouter = () => {
             <Route element={<HomePage />} path={HOME_SCREEN} />
             <Route element={<PlayOnline />} path={PLAY_ONLINE} />
             <Route element={<Settings />} path={SETTINGS} />
+            <Route element={<HowToPlay />} path={HOW_TO_PLAY} />
+            <Route element={<JoinLobby />} path={JOIN_LOBBY} />
+            <Route element={<HostGame />} path={HOST_GAME} />
         </Routes>
     </ComponentWrapper>);
 };
@@ -34,6 +42,7 @@ const ComponentWrapper = styled.div<{ backgroundColour: string, textColour: stri
     background-color: ${props => props.backgroundColour};
     color: ${props => props.textColour};
     display: flex;
+    font-size: ${TextSize};
 `;
 
 export default ContentRouter;

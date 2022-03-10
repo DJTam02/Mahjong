@@ -2,7 +2,7 @@
 
 /* Project Imports */
 
-const Settings = () => {
+const HowToPlay = () => {
     /* Props */
 
     /* Contexts */
@@ -13,7 +13,7 @@ const Settings = () => {
 
     /* Functions */
 
-    return (<div>Settings</div>);
+    return (<div>How To Play</div>);
 };
 
-export default Settings;
+export default HowToPlay;

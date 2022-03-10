@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 /* Project Imports */
-import { Wrapper, Title, PillContainer, NavButton, VerticalList } from '../../utils/constants/commonStyles';
+import { Wrapper, Title, NavButton, VerticalList } from '../../utils/constants/commonStyles';
 import { SettingsContext } from '../../contexts/SettingsContext';
 import { ISettings } from '../../types/settings';
 import { redirect } from '../../utils/functions/navigation';

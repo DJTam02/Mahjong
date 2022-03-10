@@ -13,19 +13,22 @@ export const Title = styled.h1`
     font-size: min(80px, 8vw);
 `;
 
-export const PillContainer = styled.div<{ backgroundColour: string, textColour: string }>`
+export const PillContainer = styled.div<{ textColour: string }>`
     border: 2px solid ${props => props.textColour};
     border-radius: 100000000px;
-    background-color: ${props => props.backgroundColour};
 `;
 
 
-export const NavButton = styled(PillContainer)`
+export const NavButton = styled(PillContainer)<{ backgroundColour: string }>`
     padding: 20px;
-    font-size: min(32px, 3vw);
     text-align: center;
     margin: 20px;
     cursor: pointer;
+    &:hover {
+        border: 2px solid ${props => props.backgroundColour};
+        background-color: ${props => props.textColour};
+        color: ${props => props.backgroundColour};
+    }
 `;
 
 export const VerticalList = styled.div`
@@ -33,3 +36,42 @@ export const VerticalList = styled.div`
     flex-direction: column;
     justify-content: space-between;
 `;
+
+export const RoundedContainer = styled.div<{ textColour: string }>`
+    border: 2px solid ${props => props.textColour};
+    border-radius: 43px;
+    padding: 43px;
+    text-align: center;
+`;
+
+export const CancelButton = styled(NavButton)`
+    border: 2px solid red;
+    font-size: min(20px, 1.5vw);
+    margin: 0px;
+    &:hover {
+        background-color: red;
+        color: ${props => props.backgroundColour};
+    }
+`;
+
+export const GoButton = styled(NavButton)`
+    border: 2px solid green;
+    font-size: min(20px, 1.5vw);
+    margin: 0px;
+    &:hover {
+        background-color: green;
+        color: ${props => props.backgroundColour};
+    }
+`;
+
+export const SpacedBetweenContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const RoundedTextField = styled.input<{ textColour: string }>`
+    border-radius: 100000000px;
+    border: 2px solid ${props => props.textColour} !important;
+`;
+
+export const TextSize = "min(32px, 3vw)";

@@ -20,7 +20,6 @@ const DarkModeSwitch = () => {
     };
 
     return <SwitchContainer 
-        backgroundColour={settings.colourScheme.backgroundColour} 
         textColour={settings.colourScheme.textColour} 
         onClick={toggleTheme}
     >
