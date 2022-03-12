@@ -44,6 +44,7 @@ const HomePage = () => {
 /* Styled Components */
 const ContentWrapper = styled.div`
     width: 33%;
+    min-width: 300px;
 `;
 
 const HomeWrapper = styled(Wrapper)`

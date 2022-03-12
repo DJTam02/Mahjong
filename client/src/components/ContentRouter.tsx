@@ -14,7 +14,6 @@ import PlayOnline from './setup/PlayOnline';
 import Settings from './setup/Settings';
 import HowToPlay from './setup/HowToPlay'
 import JoinLobby from './setup/JoinLobby';
-import HostGame from './setup/HostGame';
 
 const ContentRouter = () => {
     /* Contexts */
@@ -30,7 +29,7 @@ const ContentRouter = () => {
             <Route element={<Settings />} path={SETTINGS} />
             <Route element={<HowToPlay />} path={HOW_TO_PLAY} />
             <Route element={<JoinLobby />} path={JOIN_LOBBY} />
-            <Route element={<HostGame />} path={HOST_GAME} />
+            <Route element={<JoinLobby creating={true} />} path={HOST_GAME} />
         </Routes>
     </ComponentWrapper>);
 };

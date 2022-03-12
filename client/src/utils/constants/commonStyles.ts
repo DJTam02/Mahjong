@@ -48,6 +48,7 @@ export const CancelButton = styled(NavButton)`
     border: 2px solid red;
     font-size: min(20px, 1.5vw);
     margin: 0px;
+    white-space: nowrap;
     &:hover {
         background-color: red;
         color: ${props => props.backgroundColour};
@@ -58,6 +59,7 @@ export const GoButton = styled(NavButton)`
     border: 2px solid green;
     font-size: min(20px, 1.5vw);
     margin: 0px;
+    white-space: nowrap;
     &:hover {
         background-color: green;
         color: ${props => props.backgroundColour};
@@ -72,6 +74,17 @@ export const SpacedBetweenContainer = styled.div`
 export const RoundedTextField = styled.input<{ textColour: string }>`
     border-radius: 100000000px;
     border: 2px solid ${props => props.textColour} !important;
+    padding: 20px;
+    text-align: center;
+    font-size: max(1vw, 12px);
+    background-color: transparent;
+    color: ${props => props.textColour};
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
 `;
 
 export const TextSize = "min(32px, 3vw)";

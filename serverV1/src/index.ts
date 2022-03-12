@@ -1,5 +1,5 @@
 /* Depedency Imports */
-import express from "express";
+import * as express from 'express';
 import http from "http";
 import { Server, Socket } from "socket.io";
 

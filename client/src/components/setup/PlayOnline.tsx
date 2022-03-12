@@ -71,6 +71,7 @@ const PlayOnlineWrapper = styled(Wrapper)`
 
 const ContentWrapper = styled.div`
     width: 33%;
+    min-width: 300px;
 `;
 
 const GameLink = styled.div<{ textColour: string }>`
