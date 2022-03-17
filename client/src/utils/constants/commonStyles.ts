@@ -19,11 +19,17 @@ export const PillContainer = styled.div<{ textColour: string }>`
 `;
 
 
-export const NavButton = styled(PillContainer)<{ backgroundColour: string }>`
+export const NavButton = styled.button<{ textColour: string, backgroundColour: string }>`
+    border: 2px solid ${props => props.textColour};
+    border-radius: 100000000px;
     padding: 20px;
     text-align: center;
     margin: 20px;
     cursor: pointer;
+    transition: 0.25s;
+    background-color: transparent;
+    color: ${props => props.textColour};
+    font-size: inherit;
     &:hover {
         border: 2px solid ${props => props.backgroundColour};
         background-color: ${props => props.textColour};

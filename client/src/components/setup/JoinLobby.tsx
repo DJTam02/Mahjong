@@ -1,6 +1,7 @@
 /* Depedency Imports */
 import styled from 'styled-components';
 import { useContext } from 'react';
+import { Socket } from "socket.io-client";
 
 /* Project Imports */
 import { 
@@ -18,6 +19,8 @@ import { ISettings } from '../../types/settings';
 import { useNavigate } from 'react-router';
 import { PLAY_ONLINE } from '../../utils/constants/paths';
 import { redirect } from '../../utils/functions/navigation';
+import { SocketContext } from '../../contexts/SocketContext';
+import { ServerToClientEvents, ClientToServerEvents } from '../../types/socket';
 
 const JoinLobby = (props: ChildProps) => {
     /* Props */
@@ -25,6 +28,7 @@ const JoinLobby = (props: ChildProps) => {
 
     /* Contexts */
     const [settings]: [ISettings] = useContext(SettingsContext);
+    const { socket } : { socket: Socket<ServerToClientEvents, ClientToServerEvents> } = useContext(SocketContext);
 
     /* Hooks */
     const navigate = useNavigate();
@@ -54,7 +58,11 @@ const JoinLobby = (props: ChildProps) => {
                         >
                             Cancel
                         </CancelButton>
-                        <GoButton backgroundColour={settings.colourScheme.backgroundColour} textColour={settings.colourScheme.textColour}>
+                        <GoButton 
+                            backgroundColour={settings.colourScheme.backgroundColour} 
+                            textColour={settings.colourScheme.textColour}
+                            onClick={() => socket.emit("hello")}
+                        >
                             Let's go
                         </GoButton>
                     </SpacedBetweenContainer>
