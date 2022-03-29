@@ -15,8 +15,11 @@ const io = new socketio.Server<ClientToServerEvents, ServerToClientEvents, Inter
 
 io.on("connection", (socket) => {
     console.log("connected");
-    socket.on("hello", () => {
-        console.log("Hello!");
+    socket.on("joinRoom", (name, code, callback) => {
+        callback("", "ABCD");
+    });
+    socket.on("createRoom", (name, callback) => {
+        callback(name, "");
     });
 });
 

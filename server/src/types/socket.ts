@@ -6,7 +6,8 @@ interface ServerToClientEvents {
 };
   
 interface ClientToServerEvents {
-    hello: () => void;
+    joinRoom: (name: string, code: string, callback: (error: string, code: string) => void) => void;
+    createRoom: (name: string, callback: (error: string, code: string) => void) => void;
 };
   
 interface InterServerEvents {

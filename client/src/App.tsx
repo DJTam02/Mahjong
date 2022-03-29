@@ -5,19 +5,22 @@ import styled from 'styled-components';
 // Contexts
 import { SocketProvider } from './contexts/SocketContext';
 import { SettingsProvider } from './contexts/SettingsContext';
+import { ToastProvider } from './contexts/ToastContext';
 // Components
 import Header from './components/menus/Header';
 import ContentRouter from './components/ContentRouter';
 
 const App = () => {
-    return (<SocketProvider>
-        <SettingsProvider>
-            <PageWrapper>
-                <Header />
-                <ContentRouter /> 
-            </PageWrapper>
-        </SettingsProvider>
-    </SocketProvider>);
+    return (<ToastProvider>
+        <SocketProvider>
+            <SettingsProvider>
+                <PageWrapper>
+                    <Header />
+                    <ContentRouter /> 
+                </PageWrapper>
+            </SettingsProvider>
+        </SocketProvider>
+    </ToastProvider>);
 };
 
 /* Styled Components */

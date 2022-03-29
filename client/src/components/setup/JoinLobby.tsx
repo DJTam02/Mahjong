@@ -1,6 +1,6 @@
 /* Depedency Imports */
 import styled from 'styled-components';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Socket } from "socket.io-client";
 
 /* Project Imports */
@@ -17,10 +17,11 @@ import {
 import { SettingsContext } from '../../contexts/SettingsContext';
 import { ISettings } from '../../types/settings';
 import { useNavigate } from 'react-router';
-import { PLAY_ONLINE } from '../../utils/constants/paths';
+import { PLAY_ONLINE, LOBBY } from '../../utils/constants/paths';
 import { redirect } from '../../utils/functions/navigation';
 import { SocketContext } from '../../contexts/SocketContext';
 import { ServerToClientEvents, ClientToServerEvents } from '../../types/socket';
+import { ToastContext } from '../../contexts/ToastContext';
 
 const JoinLobby = (props: ChildProps) => {
     /* Props */
@@ -28,16 +29,42 @@ const JoinLobby = (props: ChildProps) => {
 
     /* Contexts */
     const [settings]: [ISettings] = useContext(SettingsContext);
-    const { socket } : { socket: Socket<ServerToClientEvents, ClientToServerEvents> } = useContext(SocketContext);
+    const socket : Socket<ServerToClientEvents, ClientToServerEvents> = useContext(SocketContext);
+    const setToast: (error: string) => void = useContext(ToastContext);
 
     /* Hooks */
     const navigate = useNavigate();
 
     /* States */
+    const [name, setName] = useState<string>("");
+    const [code, setCode] = useState<string>("");
 
     /* Effects */
 
     /* Functions */
+    const nextDisabled = () => {
+        return !(name && (creating || code));
+    };
+
+    const next = () => {
+        if (creating) {
+            socket.emit("createRoom", name, (error, code) => {
+                if (error) {
+                    setToast(error);
+                    return;
+                }
+                redirect(navigate, LOBBY + "/" + code);
+            })
+            return;
+        }
+        socket.emit("joinRoom", name, code, (error, roomCode) => {
+            if (error) {
+                setToast(error);
+                return;
+            }
+            redirect(navigate, LOBBY + "/" + roomCode);
+        });
+    };
 
     return (<JoinWrapper>
         <ContentWrapper>
@@ -45,10 +72,18 @@ const JoinLobby = (props: ChildProps) => {
             <RoundedContainer textColour={settings.colourScheme.textColour}>
                 <VerticalList>
                     <p style={{ marginTop: "0px" }}>What's your name?</p>
-                    <RoundedTextField textColour={settings.colourScheme.textColour} />
+                    <RoundedTextField 
+                        textColour={settings.colourScheme.textColour} 
+                        value={name} 
+                        onChange={(e) => setName(e.target.value)} 
+                    />
                     {!creating && <div>
                         <p>Enter access code</p>
-                        <RoundedTextField textColour={settings.colourScheme.textColour} />
+                        <RoundedTextField 
+                            textColour={settings.colourScheme.textColour} 
+                            value={code}
+                            onChange={(e) => setCode(e.target.value)}
+                        />
                     </div>}
                     <SpacedBetweenContainer style={{ marginTop: "1em" }}>
                         <CancelButton 
@@ -61,7 +96,8 @@ const JoinLobby = (props: ChildProps) => {
                         <GoButton 
                             backgroundColour={settings.colourScheme.backgroundColour} 
                             textColour={settings.colourScheme.textColour}
-                            onClick={() => socket.emit("hello")}
+                            disabled={nextDisabled()}
+                            onClick={next}
                         >
                             Let's go
                         </GoButton>

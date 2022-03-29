@@ -39,7 +39,12 @@ const PlayOnline = () => {
                     >
                         <TextMargin>
                             Host a game
-                            <ArrowRightAltIcon style={{ fontSize: TextSize, opacity: hostHover ? 1 : 0, transition: "0.25s", marginLeft: hostHover ? "10px" : "0px" }} />
+                            <ArrowRightAltIcon style={{ 
+                                fontSize: TextSize, 
+                                opacity: hostHover ? 1 : 0, 
+                                transition: "0.25s", 
+                                marginLeft: hostHover ? "10px" : "0px" 
+                            }} />
                         </TextMargin>
                     </GameLink>
                 </LinkWrapper>
@@ -56,7 +61,12 @@ const PlayOnline = () => {
                     >
                         <TextMargin>
                             Join a lobby
-                            <ArrowRightAltIcon style={{ fontSize: TextSize, opacity: joinHover ? 1 : 0, transition: "0.25s", marginLeft: joinHover ? "10px" : "0px" }} />
+                            <ArrowRightAltIcon style={{ 
+                                fontSize: TextSize, 
+                                opacity: joinHover ? 1 : 0, 
+                                transition: "0.25s", 
+                                marginLeft: joinHover ? "10px" : "0px"
+                            }} />
                         </TextMargin>
                     </GameLink>
                 </LinkWrapper>
@@ -105,4 +115,4 @@ const TextMargin = styled.div`
     align-items: center;
 `;
 
-export default PlayOnline
+export default PlayOnline;
