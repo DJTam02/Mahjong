@@ -1,22 +1,19 @@
 import express from 'express';
 import http from 'http';
 import socketio from 'socket.io';
+import { ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData } from './types/socket';
 
 const app = express();
 const port = 8080;
 
 const server = http.createServer(app);
 const io = new socketio.Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(server, {
-    cors: {
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"]
-    }
+    cors: { origin: "http://localhost:3000", methods: ["GET", "POST"] }
 });
 
 io.on("connection", (socket) => {
-    console.log("connected");
     socket.on("joinRoom", (name, code, callback) => {
-        callback("", "ABCD");
+        callback("", code);
     });
     socket.on("createRoom", (name, callback) => {
         callback(name, "");

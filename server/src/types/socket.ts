@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-extra-semi */
-interface ServerToClientEvents {
+export interface ServerToClientEvents {
     noArg: () => void;
     basicEmit: (a: number, b: string, c: Buffer) => void;
     withAck: (d: string, callback: (e: number) => void) => void;
 };
   
-interface ClientToServerEvents {
+export interface ClientToServerEvents {
     joinRoom: (name: string, code: string, callback: (error: string, code: string) => void) => void;
     createRoom: (name: string, callback: (error: string, code: string) => void) => void;
 };
   
-interface InterServerEvents {
+export interface InterServerEvents {
     ping: () => void;
 };
   
-interface SocketData {
+export interface SocketData {
     name: string;
     age: number;
 };

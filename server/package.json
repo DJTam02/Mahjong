@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsc && node dist/app.js"
+    "start": "npx nodemon ./app.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,8 @@
   "dependencies": {
     "@types/socket.io": "^3.0.2",
     "express": "^4.17.1",
-    "socket.io": "^4.4.1"
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.1",
+    "ts-node": "^10.7.0"
   }
 }

@@ -66,10 +66,19 @@ export const GoButton = styled(NavButton)`
     font-size: min(20px, 1.5vw);
     margin: 0px;
     white-space: nowrap;
-    &:hover {
+    &:hover:enabled {
         background-color: green;
         color: ${props => props.backgroundColour};
     }
+    &:hover:disabled {
+        background-color: ${props => props.backgroundColour};
+    }
+    &:disabled {
+        border: 2px solid gray;
+        color: gray;
+        cursor: default;
+    }
+
 `;
 
 export const SpacedBetweenContainer = styled.div`

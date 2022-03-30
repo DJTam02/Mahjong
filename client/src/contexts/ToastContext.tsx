@@ -20,6 +20,7 @@ const ToastProvider = (props: ChildProps) => {
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
+            theme={"colored"}
             closeOnClick
             rtl={false}
             pauseOnFocusLoss

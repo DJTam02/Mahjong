@@ -22,6 +22,7 @@ import { redirect } from '../../utils/functions/navigation';
 import { SocketContext } from '../../contexts/SocketContext';
 import { ServerToClientEvents, ClientToServerEvents } from '../../types/socket';
 import { ToastContext } from '../../contexts/ToastContext';
+import { CODE_LENGTH } from '../../utils/constants';
 
 const JoinLobby = (props: ChildProps) => {
     /* Props */
@@ -43,7 +44,7 @@ const JoinLobby = (props: ChildProps) => {
 
     /* Functions */
     const nextDisabled = () => {
-        return !(name && (creating || code));
+        return !(name && (creating || code.length === CODE_LENGTH));
     };
 
     const next = () => {
@@ -81,8 +82,9 @@ const JoinLobby = (props: ChildProps) => {
                         <p>Enter access code</p>
                         <RoundedTextField 
                             textColour={settings.colourScheme.textColour} 
+                            maxLength={CODE_LENGTH}
                             value={code}
-                            onChange={(e) => setCode(e.target.value)}
+                            onChange={(e) => setCode(e.target.value.toUpperCase())}
                         />
                     </div>}
                     <SpacedBetweenContainer style={{ marginTop: "1em" }}>
