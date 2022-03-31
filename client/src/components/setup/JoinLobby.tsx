@@ -21,7 +21,6 @@ import { PLAY_ONLINE, LOBBY } from '../../utils/constants/paths';
 import { redirect } from '../../utils/functions/navigation';
 import { SocketContext } from '../../contexts/SocketContext';
 import { ServerToClientEvents, ClientToServerEvents } from '../../types/socket';
-import { ToastContext } from '../../contexts/ToastContext';
 import { CODE_LENGTH } from '../../utils/constants';
 
 const JoinLobby = (props: ChildProps) => {
@@ -29,9 +28,8 @@ const JoinLobby = (props: ChildProps) => {
     const { creating } = props;
 
     /* Contexts */
-    const [settings]: [ISettings] = useContext(SettingsContext);
-    const socket : Socket<ServerToClientEvents, ClientToServerEvents> = useContext(SocketContext);
-    const setToast: (error: string) => void = useContext(ToastContext);
+    const [settings] = useContext<[ISettings]>(SettingsContext);
+    const socket = useContext<Socket<ServerToClientEvents, ClientToServerEvents>>(SocketContext);
 
     /* Hooks */
     const navigate = useNavigate();
@@ -49,20 +47,12 @@ const JoinLobby = (props: ChildProps) => {
 
     const next = () => {
         if (creating) {
-            socket.emit("createRoom", name, (error, code) => {
-                if (error) {
-                    setToast(error);
-                    return;
-                }
-                redirect(navigate, LOBBY + "/" + code);
+            socket.emit("createRoom", name, (roomCode) => {
+                redirect(navigate, LOBBY + "/" + roomCode);
             })
             return;
         }
-        socket.emit("joinRoom", name, code, (error, roomCode) => {
-            if (error) {
-                setToast(error);
-                return;
-            }
+        socket.emit("joinRoom", name, code, (roomCode) => {
             redirect(navigate, LOBBY + "/" + roomCode);
         });
     };

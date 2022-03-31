@@ -16,6 +16,7 @@ const __COMPONENT__ = (props: ChildProps) => {
     return (<div>__COMPONENT__</div>);
 };
 
+// Types
 interface ChildProps {
     props?: any;
 };

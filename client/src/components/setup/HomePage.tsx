@@ -12,7 +12,7 @@ import { PLAY_ONLINE, HOW_TO_PLAY, SETTINGS } from '../../utils/constants/paths'
 
 const HomePage = () => {
     /* Contexts */
-    const [settings]: [ISettings] = useContext(SettingsContext);
+    const [settings] = useContext<[ISettings]>(SettingsContext);
 
     /* Hooks */
     const navigate = useNavigate();

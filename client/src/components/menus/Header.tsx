@@ -8,10 +8,11 @@ import { SettingsContext } from '../../contexts/SettingsContext';
 import { useContext } from 'react';
 import { redirect } from '../../utils/functions/navigation';
 import { HOME_SCREEN } from '../../utils/constants/paths';
+import { ISettings } from '../../types/settings';
 
 const Header = () => {
     /* Contexts */
-    const [settings] = useContext(SettingsContext);
+    const [settings] = useContext<[ISettings]>(SettingsContext);
 
     /* Hooks */
     const navigation = useNavigate();

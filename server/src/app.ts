@@ -13,10 +13,10 @@ const io = new socketio.Server<ClientToServerEvents, ServerToClientEvents, Inter
 
 io.on("connection", (socket) => {
     socket.on("joinRoom", (name, code, callback) => {
-        callback("", code);
+        callback(code);
     });
     socket.on("createRoom", (name, callback) => {
-        callback(name, "");
+        socket.emit("errorMessage", name);
     });
 });
 

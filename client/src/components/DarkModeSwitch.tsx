@@ -1,5 +1,5 @@
 /* Dependency Imports */
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import styled from 'styled-components';
@@ -12,7 +12,7 @@ import { SET_DARK_MODE, SET_LIGHT_MODE, darkScheme, lightScheme } from '../utils
 
 const DarkModeSwitch = () => {
     /* Contexts */
-    const [settings, dispatchSettings]: [ISettings, any] = useContext(SettingsContext);
+    const [settings, dispatchSettings] = useContext<[ISettings, React.Dispatch<{ type: string; payload?: any; }>]>(SettingsContext);
 
     /* Functions */
     const toggleTheme = () => {

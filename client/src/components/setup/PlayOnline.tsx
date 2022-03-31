@@ -13,7 +13,7 @@ import { HOST_GAME, JOIN_LOBBY } from '../../utils/constants/paths';
 
 const PlayOnline = () => {
     /* Contexts */
-    const [settings]: [ISettings] = useContext(SettingsContext);
+    const [settings] = useContext<[ISettings]>(SettingsContext);
 
     /* Hooks */
     const navigate = useNavigate();
